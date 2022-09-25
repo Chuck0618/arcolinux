@@ -24,3 +24,9 @@ stat(file)
 uperm(file)
 operm(file)
 ```
+
+
+5. 复制文件，从A到B
+```
+cp(A,B)
+```
