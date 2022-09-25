@@ -30,3 +30,8 @@ operm(file)
 ```
 cp(A,B)
 ```
+
+6. 从某网址下载文件到本地地址
+```
+donwload(http://???, "/home")
+```
