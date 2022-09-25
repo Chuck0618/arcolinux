@@ -14,4 +14,13 @@ cd()    // =cd(homedir())
 homedir()  //读取主文件夹位置
 ```
 
-3. 
+3. 文件属性
+```
+stat(file)
+```
+
+4. 所属者的权限，非所属者的权限
+```
+uperm(file)
+operm(file)
+```
