@@ -52,6 +52,15 @@ float(2//3) ==  2/3  // true
 ```
 str = "long string"
 str[1:4]
+str2 = """Hello, world."""
 ```
 
 ### 7.4合并字符串
+```
+"I "*"love "*"you!"
+```
+### 7.5打印是字符串
+```
+a=[1,2,3,"hello"]
+"$a"
+```
