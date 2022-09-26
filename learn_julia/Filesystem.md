@@ -40,10 +40,17 @@ donwload(http://???, "/home")
 ```
 mv(A,B)
 ```
-
+8. 判断文件文件夹
+```
+isfile("/home/file")
+isdir("/home")
+idpath("/home")
+```
 
 9. 分裂路径
 ```
 splitdir("/home/myuser")
 // = ("/home", "myuser")
 ```
+
+
