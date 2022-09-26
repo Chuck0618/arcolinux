@@ -7,7 +7,7 @@
 - PyPlot后端：JuliaPro的Juno中安装测试反复试验后成功。Jupyter笔记本中测试成功。
 
 ```julia
-】add Plots
+add Plots
 add GR
 add PlotlyJS
 add PyPlot
