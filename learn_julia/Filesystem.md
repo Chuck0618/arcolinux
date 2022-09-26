@@ -40,3 +40,10 @@ donwload(http://???, "/home")
 ```
 mv(A,B)
 ```
+
+
+9. 分裂路径
+```
+splitdir("/home/myuser")
+// = ("/home", "myuser")
+```
