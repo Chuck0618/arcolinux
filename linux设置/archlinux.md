@@ -1,12 +1,17 @@
 ## create user
 
+创建群和用户
+```
+groupadd groupname
+useradd -g groupname username
+```
 
 ## gpg key
 
 ```bash
-> sudo pacman-key --init
-> sudo pacman-key --populate archlinux
-> sudo pacman -S archlinux-keyring
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman -S archlinux-keyring
 ```
 ## archlinuxcn 库
 
