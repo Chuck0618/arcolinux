@@ -41,4 +41,22 @@ obj.name();
 这里 Site 是类，obj 是对象，name()是方法。
 
 
-### 
+### 基础类型
+
+- any：任意类型
+- number；双精度数字
+    ```
+    let binaryLiteral: number = 0b1010; // 二进制
+    let octalLiteral: number = 0o744; // 八进制
+    let decLiteral: number = 6; //十进制
+    let hexLiteral: number = 0xf00d; 十六进制
+    ```
+- string： 字符串
+  ```
+  let name: string = "Runoob";
+  let year: number = 6;
+  let words: string = `2+3+1 = ${name}`;
+  ```
+- 
+ 
+  
