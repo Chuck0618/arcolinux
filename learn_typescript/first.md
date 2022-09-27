@@ -57,6 +57,25 @@ obj.name();
   let year: number = 6;
   let words: string = `2+3+1 = ${name}`;
   ```
-- 
+- boolean: 布尔
+```
+let isDone: boolean = falas;
+``` 
+- 类型[]: 数组，例如  number[], string[] 
+
+```
+let list: number[] = [1,2,3];
+let list: Array<number> = [1,2,3];
+```
+
+- 元组
+  ```
+  let x:[string , number];
+  x= ['hello',10];
+  ```
  
+
+## 声明变量
+
+
   
