@@ -15,7 +15,89 @@
     min-height: 100%;
     padding-bottom: 190px
     /* 下边距 */
+    }
+    a {
+    text-decoration: none
+    }
+header {
+    background: rgb(71, 71, 71);
+    height: 52px;
+    color: #ce2a2a;
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px
 }
+
+header a {
+    color: #e7e7e7;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease
+}
+
+header a:hover {
+    color: rgb(28, 176, 85)
+}
+
+header .wrapper {
+    width: 1140px;
+    margin: 0 auto;
+    line-height: 52px
+}
+
+header .wrapper .brand {
+    font-size: 18px
+}
+
+header .wrapper small {
+    margin-left: 26px;
+    font-size: 14px
+}
+
+header .wrapper .menu {
+    display: none
+}
+
+header .wrapper nav {
+    float: right
+}
+
+header .wrapper nav ul {
+    font-size: 0;
+    margin: 0;
+    padding: 0
+}
+
+header .wrapper nav ul li {
+    list-style: none;
+    font-size: 14px;
+    display: inline-block;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease
+}
+
+header .wrapper nav ul li a {
+    display: inline-block;
+    padding: 0 10px;
+    height: 52px
+}
+
+header .wrapper nav ul li a:hover {
+    background-color: #010
+}
+
+header .wrapper nav ul li a i {
+    margin-right: 5px
+}
+
+header .wrapper nav ul li>.active {
+    color: #fff;
+    background-color: #000;
+    box-shadow: 0 25px 25px -15px rgba(255, 255, 255, 0.93)
+}
+
+.fa-tags:before {
+    content: "\f02c";
+}
+
 </style>
 <body>
     <header id="top">
