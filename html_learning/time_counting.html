@@ -24,10 +24,7 @@
         stop.onclick = function(){
             clearInterval(createTimer);
         };
-        start.onclick = function()
-        {
-            createTimer = setInterval(
-                function(){
+        var fun_entrance=function(){
                 var gold = document.createElement("img");
                 gold.src = "../img/time_counting/bi.png";
                 gold.className = "item";
@@ -40,7 +37,10 @@
                         clearInterval(downTimer);
                     }
                 }, 20);
-            }, 200);
+            }
+        start.onclick = function()
+        {
+            createTimer = setInterval(fun_entrance, 300);
         };
     </script>
 </html>

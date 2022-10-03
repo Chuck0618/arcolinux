@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <style type = "text/css">
-        .card .card_start{
+        .card{
             width: 150pt;
             height: 150pt;
             box-shadow: 3pt 7pt 12pt 0pt rgb(14, 13, 13);
@@ -10,10 +10,26 @@
             margin-left: 30pt;
             border-radius: 5%;
         }
+        .time_counting::before {
+            content: attr(data-attr);
+            color: red;
+        }
+        .data_card::before {
+            content: attr(data-attr);
+            color: blue;
+        }
     </style>
 
     <body>
-    <p>
+        <button id = "id_button" onclick="myfunction(this)">
+            点我开始
+        </button>
+        <div class="time_counting" data-attr="Time: 0" id="id_counting">
+            <- 时间
+        </div>
+        <div class="data_card" data-attr="Empty" id="id_data_card">
+            <- 数据
+        </div>
         <div>
             <table>
                 <tr>
@@ -69,15 +85,54 @@
                 </tr>
             </table>
         </div>
-        <div>
-            <table>
-                <td>
-                    <div class="card_start">
-                        
-                    </div>
-                </td>
-            </table>
-        </div>
-    </p>
+        <script type="text/javascript">
+            var globaltime=0;
+            var timer;
+            var arr;
+ 
+            function shuffle(arr) {
+                arr = [1,2,3,4,5,6,7,8,9];
+                let i = arr.length;
+                while (i) {
+                    let j = Math.floor(Math.random() * i--);
+                    [arr[j], arr[i]] = [arr[i], arr[j]];
+                }
+                key=Math.floor((Math.random()*7)+0);
+                arr[8]=arr[key];
+
+                i = arr.length;
+                while (i) {
+                    let j = Math.floor(Math.random() * i--);
+                    [arr[j], arr[i]] = [arr[i], arr[j]];
+                }
+                return arr;
+            }
+
+
+            myfunction=function(x) {
+                globaltime=5;
+                timer=setInterval(settime,1000);
+                 data_output(shuffle(arr));
+                //data_output(arr);
+            };
+
+            settime=function()
+            {
+                if (globaltime >=0 ){
+                var ele=document.getElementById("id_counting");
+                ele.setAttribute("data-attr",`Time: ${globaltime}`);
+                globaltime--;
+                }
+                else
+                {
+                    clearInterval(timer);
+                }
+            };
+
+            data_output=function(y)
+            {
+                document.getElementById("id_data_card").setAttribute("data-attr",`${y}`);
+            }
+        </script>
     </body>
 </html>
