@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style type="text/css">
+            .item{
+                width: 60px;
+                border-radius: 50px;
+                position: absolute;
+                left: 10px;
+                top: 0
+            }
+        </style>
+    </head>
+    <body>
+        <input type="button" value="开始" id="start">
+        <input type="button" value="停止" id="stop">
+    </body>
+    <script type="text/javascript">
+        var start = document.getElementById("start");
+        var stop = document.getElementById("stop");
+        var createTimer;
+        stop.onclick = function(){
+            clearInterval(createTimer);
+        };
+        start.onclick = function()
+        {
+            createTimer = setInterval(
+                function(){
+                var gold = document.createElement("img");
+                gold.src = "../img/time_counting/bi.png";
+                gold.className = "item";
+                gold.style.left = Math.random() * 960 + 100 + "px";
+                document.getElementsByTagName("body")[0].appendChild(gold);
+                var downTimer = setInterval(function(){
+                    gold.style.top = gold.offsetTop + 5 + "px";
+                    if (gold.offsetTop >= 500) {
+                        gold.remove();
+                        clearInterval(downTimer);
+                    }
+                }, 20);
+            }, 200);
+        };
+    </script>
+</html>

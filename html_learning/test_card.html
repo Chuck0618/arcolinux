@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>纯CSS翻牌图片特效</title>
+    <style>
+        * {
+            padding:0;
+            margin:0;
+        }
+        body {
+            background:#333;
+        }
+        ul,li,ol {
+            list-style-type:none;
+        }
+        a {
+            text-decoration:none;
+        }
+        img {
+            width:250px;
+            height:250px;
+            display:block;
+            /*去除多余边框*/
+        }
+        #content {
+            width:1200px;
+            margin:100px auto 10px;
+        }
+        #content ul {
+            position:relative;
+        }
+        #content .bar li {
+            width:250px;
+            height:400px;
+            float:left;
+            margin-right:30px;
+        }
+        #content ul li a {
+            width:250px;
+            height:500px;
+            display:block;
+            position:relative;
+            /*远近度*/
+            perspective:400px;
+            transition:all 1s;
+        }
+        #content ul li a div {
+            transition:all 5s;
+            /*背面不可视*/
+            backface-visibility:hidden;
+        }
+        #content ul li a:hover .forward {
+            transform:rotateY(-180deg);
+        }
+        .tips {
+            width:250px;
+            height:250px;
+            color:#fff;
+            background:linear-gradient(#333,#666);
+            transform:rotateY(180deg);
+            transition:all 1s;
+            position:absolute;
+            top:0px;
+            left:0px;
+        }
+        .mytips {
+            width:250px;
+            height:250px;
+            color:#fff;
+            background:linear-gradient(#333,#666);
+            transform:rotateY(180deg);
+            transition:all 1s;
+        }
+        #content ul li a:hover .mytips {
+            transform:none;
+            box-shadow:0 0 10px 5px pink;
+            border-radius:10px;
+        }
+        .tips p {
+            text-indent:2em;
+            line-height:1.5em;
+            padding:20px;
+            font-size:18px;
+            font-weight:400;
+        }
+        #content ul li a:hover .tips {
+            transform:none;
+            box-shadow:0 0 10px 5px pink;
+            border-radius:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <ul class="bar">
+        <li>
+            <a>
+                <div class="forward">
+                    <img src="../img/pic_animals/animal1.png">
+                </div>
+                <div class="mytips">
+                    <p>快来啊 ！！！小哥哥</p>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a>
+                <div class="forward">
+                    <img src="../img/pic_animals/animal2.png">
+                </div>
+                <div class="mytips">
+                    <p>快来啊 ！！！小哥哥</p>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a>
+                <div class="forward">
+                    <img src="../img/pic_animals/animal5.png">
+                </div>
+                <div class="tips">
+                    <p>快来啊 ！！！小哥哥</p>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a>
+                <div class="forward">
+                    <img src="../img/pic_animals/animal4.png">
+                </div>
+                <div class="tips">
+                    <p>哈哈哈哈 ！！！是不是翻过来很失望</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<pre style="color:red">
+ 感：  最近贡献一下我在教学中的小案例  希望能给你一些帮助 ,希望大家继续关注我的博客
+
+</pre>
+</body>
+</html>
