@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
     <style type = "text/css">
+        .card_back,
         .card{
             width: 150pt;
             height: 150pt;
             box-shadow: 3pt 7pt 12pt 0pt rgb(14, 13, 13);
-            background-color: bisque;
+            /* background-color: bisque; */
             margin-top: 20pt;
             margin-left: 30pt;
             border-radius: 5%;
+        }
+
+        .card_back{
+            background-image:"../img/pic_animals/zoo.png";
+        }
+        .card img{
+            width: 90%;
+            margin-top: 10pt;
         }
         .time_counting::before {
             content: attr(data-attr);
@@ -21,7 +30,7 @@
     </style>
 
     <body>
-        <button id = "id_button" onclick="myfunction(this)">
+        <button id = "id_button" onclick="button_start(this)">
             点我开始
         </button>
         <div class="time_counting" data-attr="Time: 0" id="id_counting">
@@ -34,63 +43,71 @@
             <table>
                 <tr>
                     <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_0">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                     <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_1">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                     <th>
-                        <div class ="card" >
-
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <div class ="card" >
-
-                        </div>
-                    </th>
-                    <th>
-                        <div class ="card" >
-
-                        </div>
-                    </th>
-                    <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_2">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                 </tr>
                 <tr>
                     <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_3">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                     <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_4">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                     <th>
-                        <div class ="card" >
-
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_5">
+                            <img src="../img/pic_animals/zoo.png">
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_6">
+                            <img src="../img/pic_animals/zoo.png">
+                        </div>
+                    </th>
+                    <th>
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_7">
+                            <img src="../img/pic_animals/zoo.png">
+                        </div>
+                    </th>
+                    <th>
+                        <div class ="card" onclick="click_card(this)"  id = "id_card_8">
+                            <img src="../img/pic_animals/zoo.png">
                         </div>
                     </th>
                 </tr>
             </table>
         </div>
         <script type="text/javascript">
-            var globaltime=0;
+            var time_global=0;
             var timer;
-            var arr;
- 
-            function shuffle(arr) {
+            var data_list=[];
+            var flag_game_start=false;
+            var flag_timeout=false;
+            var flag_click=[];
+
+            var ele_test_click; //测试用
+            var test_num;
+            var test_id;
+            var test_image;
+
+            function shuffle() {//洗牌函数
                 arr = [1,2,3,4,5,6,7,8,9];
                 let i = arr.length;
                 while (i) {
@@ -109,30 +126,94 @@
             }
 
 
-            myfunction=function(x) {
-                globaltime=5;
+            button_start=function(x) {
+                if(flag_game_start == false)
+                {
+                time_global=5;
+                flag_game_start=true;
+                flag_timeout=false;
+                flag_click=[];
                 timer=setInterval(settime,1000);
-                 data_output(shuffle(arr));
-                //data_output(arr);
+                data_list=shuffle();
+                data_output("游戏开始了，请仔细观察下面画片，找出相同的一对动物！");
+                show_card();
+                }
             };
-
-            settime=function()
+            show_card=function()
             {
-                if (globaltime >=0 ){
+                for (key = 0; key < data_list.length; key++) 
+                { 
+                    arr_by_key=data_list[key];
+                    img_by_key=`../img/pic_animals/animal${arr_by_key}.png`;
+                    var ele=document.getElementById(`id_card_${key}`);
+                    ele.firstElementChild.setAttribute("src",img_by_key);
+                }
+            }
+            flip_card=function(){
+            for (key = 0; key < data_list.length; key++) 
+                { 
+                    img_by_key=`../img/pic_animals/zoo.png`;
+                    var ele=document.getElementById(`id_card_${key}`);
+                    ele.firstElementChild.setAttribute("src",img_by_key);
+                }
+            }
+            settime=function()//记时器工作
+            {
+                if (time_global >=0 ){
                 var ele=document.getElementById("id_counting");
-                ele.setAttribute("data-attr",`Time: ${globaltime}`);
-                globaltime--;
+                ele.setAttribute("data-attr",`Time: ${time_global}`);
+                time_global--;
                 }
                 else
                 {
+                    flag_timeout=true;
                     clearInterval(timer);
+                    flip_card();
                 }
             };
 
             data_output=function(y)
             {
-                document.getElementById("id_data_card").setAttribute("data-attr",`${y}`);
+                document.getElementById("id_data_card").
+                setAttribute("data-attr",`${y}`);
             }
+            click_card=function(x)
+            {
+                if(flag_game_start && flag_timeout)
+                {
+                //x.classList.toggle("card_clicked");
+                string_id=x.getAttribute("id");
+                key=Number(string_id[8]); 
+                if (flag_click.includes(key)==false)
+                    {
+                    arr_by_key=data_list[key];
+                    img_by_id=`../img/pic_animals/animal${arr_by_key}.png`;
+                    x.firstElementChild.setAttribute("src",img_by_id);
+                    flag_click.push(key);
+                    
+                    test_id=string_id;test_image=img_by_id;
+                    detect_end_game();
+                    }
+                }
+            }
+            detect_end_game=function()
+            {
+                if (flag_click.length == 2)
+                {
+                    //data_output(flag_click);
+                    flag_game_start=false;
+                    a=flag_click[0];
+                    b=flag_click[1];
+                    if (data_list[a] == data_list[b])
+                    {
+                        data_output("你羸了！！！");
+                    }
+                    else{
+                        data_output("你输了！！！");
+                    }
+                }
+            };
+
         </script>
     </body>
 </html>
