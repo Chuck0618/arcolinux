@@ -1,2 +1,5 @@
 test/*
 test/google_card
+node_modules
+package-lock.json
+package.json
