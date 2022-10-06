@@ -1,0 +1,8 @@
+set synctex true
+set synctex-editor-command "code --no-sandbox -r -g \"%{input}:%{line}\""
+set selection-clipboard clipboard
+map <C--> zoom out
+map <C-+> zoom in
+map <C-=> zoom in
+set zoom-step 50
+set zoom-min 50
