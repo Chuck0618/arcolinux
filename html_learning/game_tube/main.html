@@ -19,22 +19,71 @@
                 box-sizing: border-box; 
                 /* 计算方式。 */
             }
+            .item img
+            {
+                width: 100%;
+            }
         </style>
         <div class ="playground" >
         </div>
 
         <div class = ["playground" "test"]>
-            <div data-v="(${i},${j})" class="item" style = "width: 20px;height:20px">
-                <img src="../../img/pic_animals/zoo.png">
+            <div data-v="(${i},${j})" class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/2.png" style="transform: rotate(0deg)">
+            </div>
+
+            <div data-v="(${i},${j})" data-pic="2"
+            class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/2.png" style= "transform: rotate(90deg)">
+            </div>
+
+            <div data-v="(${i},${j})" data-pic="2" data-rotation="0"
+            class="item" style = "width: 100px;height:100px">
+            </div>
+
+            <!-- List of png = 1,2,3,4,5 -->
+            <div class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/1.png" style= "transform: rotate(0deg)">
+            </div>
+            <div class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/2.png" style= "transform: rotate(0deg)">
+            </div>
+            <div class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/3.png" style= "transform: rotate(0deg)">
+            </div>
+            <div class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/4.png" style= "transform: rotate(0deg)">
+            </div>
+            <div class="item" style = "width: 100px;height:100px">
+                <img src="../../img/Game_tube/5.png" style= "transform: rotate(0deg)">
             </div>
         </div>
     </body>
     <script>
         var pg= document.querySelector(".playground");
+        function rand(a,b)
+        {
+            return a+Math.floor(Math.random()*(b-a+1));
+        }
+        class Item
+        {
+            constructor(i,j)
+            {
+                this.i=i;
+                this.j=j;
+            }
+            show()
+            {
+                let ele=document.querySelector(`[data-v='(${this.i},${this.j})']`);
+                ele.innerHTML=` <img src="../../img/Game_tube/${this.png}.png" style= "transform: rotate(${this.r}deg)">`
+            }
+        }
         result = [];
         const rows = 10;
         const cols = 10;
         const size = 50;
+        const png_num= 5; // form 1 to 5;
+        list_item =[];
         for (let i=0; i<rows; i++)
         {
             for (let j =0; j<cols;j++ )
@@ -46,5 +95,18 @@
         }
         pg.innerHTML=result.join('');
         pg.style.width = `${rows*size}px`;
+
+        for (let i=0; i<rows; i++)
+        {
+            for (let j =0; j<cols;j++ )
+            {
+                var it = new Item(i,j);
+                it.r =rand(0,3);
+                it.png= rand(1,5);
+                list_item.push(it);
+                it.show();
+            }
+        }
+
     </script>
 </html>
