@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            This is a game of tube.
+        </title>
+    </head>
+
+    <body>
+        <style>
+            .playground {
+                border: 1px solid #ddd;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .item
+            {
+                border: 1px solid #ddd;
+                box-sizing: border-box; 
+                /* 计算方式。 */
+            }
+        </style>
+        <div class ="playground" >
+        </div>
+
+        <div class = ["playground" "test"]>
+            <div data-v="(${i},${j})" class="item" style = "width: 20px;height:20px">
+                <img src="../../img/pic_animals/zoo.png">
+            </div>
+        </div>
+    </body>
+    <script>
+        var pg= document.querySelector(".playground");
+        result = [];
+        const rows = 10;
+        const cols = 10;
+        const size = 50;
+        for (let i=0; i<rows; i++)
+        {
+            for (let j =0; j<cols;j++ )
+            {
+                result.push(
+                    `<div data-v="(${i},${j})" class="item" style = "width:${size}px;height:${size}px">
+                    </div>`);
+            }
+        }
+        pg.innerHTML=result.join('');
+        pg.style.width = `${rows*size}px`;
+    </script>
+</html>
