@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            This is a game of snake!
+        </title>
+    </head>
+
+    <body>
+        <style>
+            .playground {
+                border: 1px solid #ddd;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .item
+            {
+                border: 1px solid #ddd;
+                box-sizing: border-box; 
+                /* 计算方式。 */
+            }
+        </style>
+        <div class ="playground" >
+        </div>
+    </body>
+    <script>
+        var pg= document.querySelector(".playground");
+        result = [];
+        const rows = 20;
+        const cols = 20;
+        const size = 20;
+        for (let i=0; i<rows; i++)
+        {
+            for (let j =0; j<cols;j++ )
+            {
+                result.push(
+                    `<div data-v="(${i},${j})" class="item" style = "width:${size}px;height:${size}px">
+                    </div>`);
+            }
+        }
+        pg.innerHTML=result.join('');
+        pg.style.width = `${rows*size}px`;
+    </script>
+</html>
