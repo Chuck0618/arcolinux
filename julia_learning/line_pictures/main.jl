@@ -14,7 +14,18 @@ mutable struct Point
     Px::Float16
     Py::Float16
 end
+```
+P3 到 直线 P1P2 的距离 
+P1P2的直线方程记为
+Ax+By+C=0;
+$$
+\frac{x-x_1}{x_2-x_1} = \frac{y-y_1}{y_2-y_1}  
+$$
+```
+distance(P1::Point, P2::Point, P3::Point)
+{
 
+}
 
 
 struct Canvas
