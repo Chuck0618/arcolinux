@@ -61,6 +61,8 @@
     </body>
     <script>
         var pg= document.querySelector(".playground");
+        var pointer; //pointer of click
+
         function rand(a,b)
         {
             return a+Math.floor(Math.random()*(b-a+1));
@@ -75,7 +77,13 @@
             show()
             {
                 let ele=document.querySelector(`[data-v='(${this.i},${this.j})']`);
-                ele.innerHTML=` <img src="../../img/Game_tube/${this.png}.png" style= "transform: rotate(${this.r}deg)">`
+                ele.innerHTML=` <img src="../../img/Game_tube/${this.png}.png" style= "transform: rotate(${this.r*90}deg)">`
+            }
+            next()
+            {
+                this.r++; this.r%=4;
+                this.show();
+                return this;
             }
         }
         result = [];
@@ -89,13 +97,18 @@
             for (let j =0; j<cols;j++ )
             {
                 result.push(
-                    `<div data-v="(${i},${j})" class="item" style = "width:${size}px;height:${size}px">
+                    `<div data-v="(${i},${j})" data-ind="${i*rows+j}"
+                    class="item" onclick="clickfunction(this)"
+                    style = "width:${size}px;height:${size}px">
                     </div>`);
             }
         }
         pg.innerHTML=result.join('');
+
         pg.style.width = `${rows*size}px`;
 
+
+        //init data for playground
         for (let i=0; i<rows; i++)
         {
             for (let j =0; j<cols;j++ )
@@ -106,6 +119,12 @@
                 list_item.push(it);
                 it.show();
             }
+        }
+
+        function clickfunction(ip)
+        {
+            // console.log(ip.dataset.ind);
+            list_item[Number(ip.dataset.ind)].next();
         }
 
     </script>
