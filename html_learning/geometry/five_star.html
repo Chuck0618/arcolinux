@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh;
+    }
+#star-five {
+      margin: 50px 0;
+      position: relative;
+      display: block;
+      color: red;
+      width: 0px;
+      height: 0px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid red;
+      border-left: 100px solid transparent;
+      /* transform: rotate(35deg); */
+    }
+    #star-five:before {
+      border-bottom: 80px solid red;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: -45px;
+      left: -65px;
+      display: block;
+      /* content: ''; */
+      transform: rotate(-35deg);
+    }
+    
+    #star-five:after {
+      position: absolute;
+      display: block;
+      color: red;
+      top: 3px;
+      left: -105px;
+      width: 0px;
+      height: 0px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid red;
+      border-left: 100px solid transparent;
+      transform: rotate(-70deg);
+      /* content: ''; */
+    } 
+    .box{
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: red;
+    width: 61px;
+    height: 54px;
+    border-right: 84px solid blue;
+    border-bottom: 49px solid green;
+    border-left: 100px solid gray;
+    border-top: 100px solid #b01818;
+    /* transform: rotate(35deg); */
+    }
+  </style>
+</head>
+<body>
+   <div class = "geometry" id ="star-five">
+ 
+   </div>
+   <br/>
+   <h2>
+      利用 border-bottom 之类的性质
+      <br/>可以画梯形和三角形。
+   </h2>
+   <br/>
+   <div class = "box">
+    </div>
+</body>
+</html>
+
