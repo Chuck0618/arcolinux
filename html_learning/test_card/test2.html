@@ -5,8 +5,93 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link href="css/style.css" rel="stylesheet"> -->
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                /* box-sizing: border-box; */
+                /* background: #dec1c1 */
+            }
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background: #181818;
+            }
+            .box{
+                width: 300px;
+                height: 400px;
+                background-color: rgba(0, 0, 0,0.7);
+                border-radius: 20px;
+                display: flex;
+                position: absolute;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            /* .box::before{
+                content: "hello before";
+                width: 500px;
+                height:600px;
+                position: absolute;
+                background-image: conic-gradient(transparent,transparent,transparent,#8728f8); 
+                background-color: rgba(127, 255, 212, 0.205); 
+            } */
+            .box .Card1{
+                content: "hello before";
+                width: 500px;
+                height:600px;
+                position: absolute;
+                background-image: conic-gradient(transparent,transparent,transparent,#8728f8); 
+                background-color: rgba(255, 255, 255,0); 
+                animation: ani_name 4s linear infinite;
+            }
+            .box .Card3{
+                content: "hello before";
+                width: 500px;
+                height:600px;
+                position: absolute;
+                background-image: conic-gradient(transparent,transparent,transparent,#1eb667); 
+                background-color: rgba(255, 255, 255,0); 
+                animation: ani_name 4s linear infinite;
+                animation-delay: -2s;
+            }
+            @keyframes ani_name{
+                0%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+            .box .Card2{
+                position: absolute;
+                inset: 5px;
+                border-radius: 16px;
+                background-color: #181818;
+                z-index: 1;
+            }
+            .box h2{
+                position: absolute;
+                z-index: 2;
+                font-size: 10em;
+                color: aliceblue;
+            }
+        </style>
     </head>
     <body>
-        
+        <div class="box" >
+            <div class ="Card1">
+                Card1 
+            </div>
+            <div class ="Card2">
+                Card2
+            </div>
+            <div class ="Card3">
+                Card3
+            </div>
+            <h2> A </h2>
+        </div>
     </body>
 </html>
