@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+      body {
+        font-family: Source Han Sans;
+        font-size: 12pt;
+        background-color: #2d3335;
+        color: #ffffff;
+      }
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color:#ffffff;
+    background-color: #2d3335;
+    font-family:  Source Han Sans, ui-serif, serif;
+    font-size: : 12pt;
+    line-height: 1.5;
+}
+
+h1 {
+    color: #FFC0CB;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #FFC0CB;
+    font-weight: bold;
+    text-transform: none;
+}
+
+table {
+    border: 1px solid $grid-color;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+    line-height: normal;
+}
+
+tr {
+    border: 1px solid $grid-color;
+    text-align: left;
+    margin: 0;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: $tertiary-fill-color;
+} 
+
+th {
+    font-weight: bold;
+    text-align: left;
+    border: 1px solid $grid-color;
+    padding: 2px 5px 2px 5px;
+}
+
+td {
+    border: 1px solid $grid-color;
+    padding: 2px 5px 2px 5px;
+}
+
+pre {
+    color: $code-color;
+    background-color: transparent;
+    font-family: "$code-font-family", monospace;
+    border: 1px solid $separator-color;
+    padding: 10px;
+    border-radius: 3px;
+    line-height: normal;
+    font-size: $code-font-size;
+    overflow: auto;
+}
+
+code {
+	color: white;
+    font-family: Source Sans Variable, monospace;
+    font-size: 12pt;
+}
+a ::hover{
+    color: red;
+}
+
+a {
+    color: yellow;
+}
+
+img {
+    max-width: 100%;
+}
+
+pre code, pre tt {
+    background-color: transparent;
+    border: none;
+}
+
+blockquote {
+    color: green;
+    background-color: transparent;
+    border-left: 4px solid green;
+    padding: 0 15px;
+}
+
+hr {
+    color: $separator-color;
+    background-color: $separator-color;
+    border: 1px none;
+    height: 1px;
+}
+
+ul, ol {
+    line-height: 2;
+}
+
+kbd {
+    color: $code-color;
+    background-color: transparent;
+    font-family: "$code-font-family", monospace;
+    border: 1px solid $separator-color;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 $separator-color;
+}
+    </style>
+  </head>
+  <body onload="math()">
+	<p>  MY CSS.html version 3 <br/>
+	</p>
+    <p>---
+title: &quot;绕线画&quot;
+date: 2022-09-22
+categories: 艺术</p>
+
+<h2>tags: 画 算法</h2>
+
+<h1>绕线画</h1>
+
+<p>经常在网上可以看到一些有趣的艺术画作品，绕线画就是其中非常有意思的一种风格。围着圆圈固定两三百根钉子，然后用纺织线有规律地绕在钉子上，环绕几百圈后，可以组成一张神奇的画像。甚至一些极客把绕线的过程做成视频，达到炫酷的效果。在这一章里，笔者主要带读者们设计一个可以制作绕线画的算法。</p>
+
+<h2>基本数学建模</h2>
+
+<p>我们假定单位长的圆周上均匀地分布着 $N$（约等于250）根钉子，依次标上记号 $1,2,3,\ldots, N$. 那么围着钉子依次的<code>绕线过程</code>可以标记为一个数列：
+$$
+\mathbf{a} = ( a_1, a_2 , \ldots ,a_K) .
+$$
+其中 $K$ 是我们绕线的总次数。给定这样一个绕线的过程，我们就可以得到一张照片。
+这时候，我们还是需要从中学时期就学过的函数思维。
+用 $\mathbb{N}^K$ 表示所有数列 $\mathbf{a}$ 的可能的组合。
+接下来，我们可以构筑一个函数，
+$$
+\phi :\mathbb{N}^K \to \text{Photoset}.
+$$
+这里的 <code>Photoset</code> 表示所有的照片的集合。
+接下来，我们需要准备好一张照片，我们记为 $Y$。</p>
+
+<p>我们的原始的问题是寻找合适的<code>绕线过程</code>，使得最张的照片与我们的指定的照片 $Y$ 相似。
+转化为数学的语言，就变成为：
+寻找合适的 $\mathbf{a}\in \mathbb{N}^K$
+并生成照片 $X = \phi(\mathbf{a})$,
+使得 $d(X,Y)$ 最小。
+注意到，这里的 $d(\phi(\mathbf{a}),Y)$ 表示的是两张照片 $\mathbf{a}$ 和 $Y$ 的<code>距离函数</code>，可以描述相似程度。
+总结起来，我们需要解决3个基本的问题：
+1. 构造生成照片的函数 $\phi$;
+2. 定义<code>Photoset</code> 上距离函数 d(X,Y);
+3. 利用一个合适的算法，找到理解的解 $a \in \mathbb{N}^K$. </p>
+
+<h2>生成照片的函数 $\phi$</h2>
+
+<p>我们需要先提供一个工具，把一个<code>绕线过程</code>实现为一张图片。
+在这之前，我们先思考下一张图片用数据结构表示？</p>
+
+<h3>1.位图结构</h3>
+
+<p>依照通常方式，我们约定 $0$ 代表绝对黑色，而 $1$ 代表绝对白色。为了得到更为精细的效果，我们并不采用非黑即白的方式。相对地，本文用 $0$ 到 $1$ 的数值来表示相素的明暗程度。</p>
+
+<h3>2.点到直线的距离公式</h3>
+
+<p>我们中学的知识体系中，直线可以表示为方程
+$$
+ L: aX + bY +c = 0
+$$
+的解。那么，在平面坐标中，点 $q= (x, y)$ 到直线 $L$ 的距离的计算公式为：
+$$
+\frac{ | a x +by +c | }{ \sqrt{ a^2 + b^2 }}.
+$$</p>
+
+<h3>3.定义笔刷</h3>
+
+<p>假定选定两个点 $p_1, p_2 \in P$, 我们应该如何在画布上表示出两点之间的线段 $\overline{p_1p_2}$ 呢？显然我们需要在每个相素点 $q \in Q$ 上指定一个黑化值。实际操作用，我们用纺织线来模似线段 $\overline{p_1p_2}$，而纺织线是有实际宽度的（记宽度为 $\text{line width}$）。那些离线段越近的相素点理所应当越黑，而距离超过$\text{line width}$，应当定义为纯白。利用 $q$ 到$\overline{p_1p_2}$ 距离大小 $d(q, \overline{p_1p_2})$，可以简单地定义 $q \in Q$ 的黑化值为
+ - 当 $d(q, \overline{p_1p_2}) \leqslant \text{line width}$ 时，
+$$
+ v (q, \overline{P_1P_2}) = \text{decay value} + (1 - \text{decay value} ) \frac{d(q, \overline{P_1P_2})} { \text{line width}} ,
+ $$
+ - 当 $d(q, \overline{p_1 p_2}) &gt; \text{line width}$ 时，
+$$
+ v (q, \overline{p_1p_2}) = 1.
+ $$
+这里，$\text{decay value}$ 线条中间部分的黑化值。</p>
+
+<h3>4.笔刷的混合模式</h3>
+
+<p>试想一下，在图上画两笔，那么得到的图像是什么样的？
+这里，我们需要用到两个笔画的混合模式。
+$$
+v = 1-(1-v_1)(1-v_2).
+$$</p>
+
+<h3>5.例子</h3>
+
+<h2>1 主要步骤</h2>
+
+<p>我们主要考虑用贪婪算法，在空白的圆形区域内不断增加线段，计算每次增加预选线段与目标图片的相似度，从中选择最优的路径。具体步骤如下：</p>
+
+<ol>
+<li>准备正方形的目标图片 $G_0$ （参考像素为1200*1200）.</li>
+<li>在目标图片 $G_0$ 上选择一个圆形区域，圆周 $P$ 上均匀地选择 $N$（参考数值为 200 到300）个点作为钉针的位置.</li>
+<li>提取目标图片圆形区域内有的有效像素点集 $Q =\lbrace q_i | i \in I_G \rbrace$，以及所有相素点的黑化值 $f : G \to \mathbb R$.</li>
+<li>复制一个同样大小的圆形空白区域用做画布，相当定义了函数 $S: Q \to \mathbb R$.</li>
+<li>从任一根针 $p_1 \in P$ 出发，计算到另一根针 $p_2$ 的线段所经过的像素，计算每个像素点的黑色值.</li>
+<li>从这 $ N-1$ 个线段中，选择一条总黑色值最大的线段.</li>
+<li>以终点针为起始点做循环操作，直到达到最大线程（参考线程为1000到2000）.</li>
+</ol>
+
+<h2>图形渲染的知识！</h2>
+
+<h2>2 定义线条的黑化值，即函数 $v(q, \overline{ p_1 p_2})$</h2>
+
+<p>首先，依照通常方式，我们约定 $0$ 代表绝对黑色，而 $1$ 代表绝对白色。为了得到更为精细的效果，我们并不采用非黑即白的方式。相反地，本文用 $0$ 到 $1$ 之间的任一个数值来表示一个相素点的明暗程度。</p>
+
+<h3>2.1 两点之间的直线公式</h3>
+
+<p>设 $p_1 = (x_1,y_1)$ 与 $p_2 = (x_2, y_2)$ 是两点的坐标，那么过这两点的直线方程为
+$$
+ (x - x_1)({y_2 - y_1 } )= (x_2 - x_1 )(y - y_1).
+$$</p>
+
+<h3>2.2 点到直线的距离公式</h3>
+
+<p>点 $q= (x, y)$ 到直线
+$$
+aX + bY +c = 0
+$$
+的距离公式为
+$$
+ \frac{ | a x +by +c | }{ \sqrt{ a^2 + b^2 }}.
+$$</p>
+
+<h3>2.3 黑化值</h3>
+
+<p>假定选定两个点 $p_1, p_2 \in P$, 我们应该如何在画布上表示出两点之间的线段 $\overline{p_1p_2}$ 呢？显然我们需要在每个相素点 $q \in Q$ 上指定一个黑化值。实际操作用，我们用纺织线来模似线段 $\overline{p_1p_2}$，而纺织线是有实际宽度的（记宽度为 $\text{line width}$）。那些离线段越近的相素点理所应当越黑，而距离超过$\text{line width}$，应当定义为纯白。利用 $q$ 到$\overline{p_1p_2}$ 距离大小 $d(q, \overline{p_1p_2})$，可以简单地定义 $q \in Q$ 的黑化值为
+ - 当 $d(q, \overline{p_1p_2}) \leqslant \text{line width}$ 时，
+$$
+ v (q, \overline{P_1P_2}) = \text{decay value} + (1 - \text{decay value} ) \frac{d(q, \overline{P_1P_2})} { \text{line width}} ,
+ $$
+ - 当 $d(q, \overline{p_1p_2}) &gt; \text{line width}$ 时，
+$$
+ v (q, \overline{p_1p_2}) = 1.
+ $$
+这里，$\text{decay value}$ 线条中间部分的黑化值。</p>
+
+<h2>3 画布黑化值的迭代</h2>
+
+<h3>3.1 初始化</h3>
+
+<p>由于我们假定在白布上操作，所以函数 $S$ 的初始值应当设定为
+$$
+ S(q) = S^{(0)} (q) = 1 \text{ 对于所有的 $q\in Q$}<br/>
+$$</p>
+
+<h3>3.2 候选线段</h3>
+
+<p>假定画完第 $i$ 条线后，终点是 $p<em>{i+1} \in P$，而画布的状态是 $S = S^{(i)}$. 此时，以 $p</em>{i+1}$ 为起点，我们有 $N- 1$ 种线段选择法。设候选线段为 $\overline{p<em>{i+1} p</em>{i+2}}$，这里 $p_{i+2} \in P$.</p>
+
+<h3>3.3 计算候选黑化值</h3>
+
+<p>由<strong>2.3</strong>节，我们得于线段 $\overline{p<em>{i+1} p</em>{i+2}}$ 在画布区域上的黑化值，由$ v(q, \overline{p<em>{i+1} p</em>{i+2}} ) $ 表示。这时，函数 $S$ 应更新为
+$$
+S<em>{p</em>{i+1}}(q) = S^{(i)} (q) \cdot v(q, \overline{p<em>{i+1} p</em>{i+2}}) .
+$$</p>
+
+<h3>3.4 最高匹配度</h3>
+
+<p>目前，我们假定选择了 $p<em>{i+1} \in P$，从而在画布上计算出了候选的黑化值函数 $S</em>{p<em>{q+1}}$. 那么怎么判定 $p</em>{i+1}$ 是一个不错的选择呢？也就是问，怎么判定画布接近真实图片 $G_0$ 的黑化值呢？</p>
+
+<h2>贪心算法</h2>
+
+<p>(这里要写贪心算法的一些细节)</p>
+
+<p>贪心算法一般按如下步骤进行:
+1. 建立数学模型来描述问题。
+2. 把求解的问题分成若干个子问题。
+3. 对每个子问题求解，得到子问题的局部最优解。
+4. 把子问题的解局部最优解合成原来解问题的一个解。</p>
+
+<p>贪心算法是一种对某些求最优解问题的更简单、更迅速的设计技术。贪心算法的特点是一步一步地进行，常以当前情况为基础根据某个优化测度作最优选择，而不考虑各种可能的整体情况，省去了为找最优解要穷尽所有可能而必须耗费的大量时间。贪心算法采用自顶向下，以迭代的方法做出相继的贪心选择，每做一次贪心选择，就将所求问题简化为一个规模更小的子问题，通过每一步贪心选择，可得到问题的一个最优解。虽然每一步上都要保证能获得局部最优解，但由此产生的全局解有时不一定是最优的，所以贪心算法不要回溯。</p>
+
+<h2>知识扩展：关于距离</h2>
+
+<p>从文学解释来说，距离指两物体在空间上相隔或间隔的长度。这对于数学家来说，远不是一个严谨化的概念。
+笔者一直强调，正如伽利略的名言，数学是一种自然界的语言。</p>
+
+<blockquote>
+<p>数学是上帝用来书写宇宙的文字。——伽利略
+电影里，</p>
+</blockquote>
+
+<p>距离这个概念，其实是多种多样的，我们需要在不同的场合中给出合理的定义。
+比如欧几理德几何学的情况，学术意义上的距离就与我们生活经验中的距离是一致。
+总体说来，它应该有3种性质。</p>
+
+<ul>
+<li>正定性:
+这是说，一个对象 $A$ 到另一个对象 $B$ 的距离大于等于0，而等于0的情况<strong>有且仅有</strong>的情况就是对象到自己的距离为0.</li>
+<li>自反性:
+对象 $A$ 到对象 $B$ 距离等于对象 $B$ 到对象 $A$ 距离。</li>
+<li>三角不等式:
+对于对象 $A ,B,C$，我们有
+$$
+d(A,B) + d(B,C) \geqslant d(A,C).
+$$</li>
+</ul>
+  </body>
+<script>
+	function math(){
+		renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+	};
+  </script>
+</html>
