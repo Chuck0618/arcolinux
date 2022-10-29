@@ -16,5 +16,11 @@ Gunicorn ‘Green Unicorn’ 是一个 UNIX 下的 WSGI HTTP 服务器，它是�
 gunicorn -w 3 -b 0.0.0.0:8080 app:app
 ```
 
-3. 
+3. authbind
 解决防火墙问题 authbind
+
+
+4. nginx
+
+5. gulp-connect
+gulp 是node.js 的自动代管理工具，gulp-connect是本地服务的管理软件。
